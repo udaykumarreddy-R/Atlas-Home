@@ -2,6 +2,7 @@ import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Plus, Minus } from 'lucide-react';
 import { FaAngleDown, FaAngleUp } from "react-icons/fa6";
+import { emailJsConfig, getMissingEmailJsEnvKeys, isEmailJsConfigured } from '../../../utils/emailjsConfig';
 interface Property {
   property_name: string;
 }
@@ -58,9 +59,16 @@ const BookingForm = ({ propertyData }: { propertyData: Property }) => {
       alert('Please enter a valid email address.');
       return;
     }
+    if (!isEmailJsConfigured()) {
+      const missingKeys = getMissingEmailJsEnvKeys().join(', ');
+      console.error('EmailJS environment variables are not fully configured.', missingKeys);
+      alert('Booking is temporarily unavailable. Please contact support.');
+      return;
+    }
+
     setIsLoading(true);
     const templateParams = {
-      to_email: 'atlashomeskphb@gmail.com',
+      to_email: emailJsConfig.ownerEmail,
       to_name: 'Property Owner',
       from_name: name,
       contact_number: contactNumber,
@@ -76,16 +84,17 @@ const BookingForm = ({ propertyData }: { propertyData: Property }) => {
       total_guests: totalGuests,
       // total_price: `₹${totalPrice.toLocaleString()}`,
       property_name: propertyData?.property_name || 'Property',
-      message: `New booking request for ${nights} nights from ${checkIn} to ${checkOut}. 
+      message: `New booking request for ${nights} nights from ${checkIn} to ${checkOut}.
 Guests: ${adults} adults, ${children} children, ${infants} infants, ${pets} pets.
 Total Price: ₹${totalPrice.toLocaleString()}`
     };
     try {
-      // Replace the following with your actual EmailJS credentials
-      const serviceId = '';
-      const templateId = '';
-      const publicKey = '';
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      await emailjs.send(
+        emailJsConfig.serviceId!,
+        emailJsConfig.templateId!,
+        templateParams,
+        emailJsConfig.publicKey!
+      );
 
       alert('Booking request sent successfully!');
       // Optionally clear the form or keep data as is

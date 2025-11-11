@@ -1,5 +1,3 @@
-import { s } from 'framer-motion/client';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [

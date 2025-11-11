@@ -46,7 +46,7 @@ Optional tooling:
 | `src/main.tsx` | Entry point bootstrapping React with router context and Tailwind global styles. |
 | `src/App.tsx` | Declares `BrowserRouter` routes for the home page, property detail views, location collections, and 404 handling while wrapping shared layout pieces. |
 | `src/pages/home/Home.tsx` | Home hero, location scroller, parallax CTA, and marketing sections composing homepage modules. |
-| `src/components/homepage_components/homepage_locations/HomePage_Locations.tsx` | Grid of property cards sourced from `propertyData`, each linking to the slugged property detail view. |
+| `src/components/homepage_components/homepage_locations/HomePage_Locations.tsx` | Grid of property cards sourced from `LISTINGS`, featuring the Penthouse layout and linking to slugged property detail views when data exists. |
 | `src/components/homepage_components/homepage_Propertydetails/Homepage_PropertyDetails.tsx` | Property detail page rendering gallery, amenities, booking widget, and policies from `propertyData`. |
 | `src/components/homepage_components/homepage_locationsdetails/Homepage_LocationDetails.tsx` | Location-deep page with filters, hero carousel, and booking modal for grouped listings. |
 | `src/data.ts` | Source of property metadata, navigation content, and footer links consumed across the UI. |
@@ -68,3 +68,6 @@ Optional tooling:
 - **Blank property pages:** Ensure navigation via the homepage so React Router receives the `location.state` payload required by [`Homepage_LocationDetails`](src/components/homepage_components/homepage_locationsdetails/Homepage_LocationDetails.tsx).
 - **Email delivery fails:** Confirm the EmailJS service, template, and public keys are filled in `.env` and referenced in [`BookingFrom.tsx`](src/components/homepage_components/homepage_Propertydetails/BookingFrom.tsx) and [`ContactUs.tsx`](src/pages/contactus/ContactUs.tsx).
 - **Cloudflare deployment issues:** Run `npm run build` before `wrangler deploy`; Wrangler serves the contents of `dist/` configured in [`wrangler.toml`](wrangler.toml).
+
+## Listings
+- Featured listing: mark `featured: true` in [`src/data/listings.ts`](src/data/listings.ts). Images are auto-loaded from `src/assets/<unit>/`.

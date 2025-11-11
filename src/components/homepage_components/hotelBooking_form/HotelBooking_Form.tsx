@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { propertyData } from '../../../data';
+import { propertyData } from '../../../data.ts';
 import { useNavigate } from 'react-router-dom';
 
 const HotelBooking_Form = () => {

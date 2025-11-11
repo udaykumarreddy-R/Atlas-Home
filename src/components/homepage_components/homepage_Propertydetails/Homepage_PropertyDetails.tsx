@@ -9,7 +9,7 @@ import { MdOutlineEmojiFoodBeverage, MdOutlineLocalLaundryService, MdOutlineDone
 import { FaCcMastercard, FaLocationDot } from "react-icons/fa6";
 import { X, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { propertyData } from '../../../data';
+import { propertyData } from '../../../data.ts';
 import Subheading from '../../commonComponents/subheading/Subheading';
 import HotelBooking_Form from '../hotelBooking_form/HotelBooking_Form';
 

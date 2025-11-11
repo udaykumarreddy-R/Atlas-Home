@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, useLocation, matchPath } from "react-router-dom"
 import './App.css'
 import PageNotFound from "./pages/pagenotfound/PageNotFound"
 import Home from "./pages/home/Home"
@@ -14,9 +14,11 @@ function AppWrapper() {
   const location = useLocation();
 
   // Add routes here where Navbar should be hidden
-  const hideNavbarRoutes = ['/Homepage_LocationDetails'];
+  const hideNavbarRoutes = ['/property_LocationDetails/:id'];
 
-  const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
+  const shouldHideNavbar = hideNavbarRoutes.some((pattern) =>
+    Boolean(matchPath(pattern, location.pathname))
+  );
 
   return (
     <>

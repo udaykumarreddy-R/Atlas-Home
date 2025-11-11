@@ -13,7 +13,8 @@ import img from '../../assets/pinnacle_images/p_1.jpeg';
 
 
 import React, { useState } from "react";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
+import { emailJsConfig, getMissingEmailJsEnvKeys, isEmailJsConfigured } from "../../utils/emailjsConfig";
 
 const ContactUs = () => {
 
@@ -29,33 +30,37 @@ const ContactUs = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        emailjs
-            .send(
-                "service_zmdaupt",
-                "template_e6d4izv",
+        if (!isEmailJsConfigured()) {
+            const missingKeys = getMissingEmailJsEnvKeys().join(", ");
+            console.error("EmailJS environment variables are not fully configured.", missingKeys);
+            alert("Contact form is temporarily unavailable. Please reach out via phone or email.");
+            return;
+        }
+
+        try {
+            const response = await emailjs.send(
+                emailJsConfig.serviceId!,
+                emailJsConfig.templateId!,
                 {
                     user_name: formData.name,
                     user_email: formData.email,
                     user_contactnumber: formData.contactnumber,
                     destination: formData.destination,
                     message: formData.description,
+                    to_email: emailJsConfig.ownerEmail,
                 },
-                "8xpsPhryxv1U-pr1Z"
-            )
-            .then(
-                (response: any) => {
-                    console.log("SUCCESS!", response.status, response.text);
-                    alert("Message sent successfully!");
-                    setFormData({ name: "", email: "", contactnumber: "", destination: "", description: "" });
-                },
-                (error: any) => {
-                    console.log("FAILED...", error);
-                    alert("Failed to send message. Please try again.");
-                }
+                emailJsConfig.publicKey!
             );
+            console.log("SUCCESS!", response.status, response.text);
+            alert("Message sent successfully!");
+            setFormData({ name: "", email: "", contactnumber: "", destination: "", description: "" });
+        } catch (error) {
+            console.log("FAILED...", error);
+            alert("Failed to send message. Please try again.");
+        }
     };
 
     return (

@@ -14,7 +14,12 @@ Welcome to the Atlas Homes Frontend project! This guide walks you through enviro
    ```bash
    cp .env.example .env
    ```
-   - Ask an existing maintainer for the `VITE_EMAILJS_*` keys.
+   - Ask an existing maintainer for the `VITE_EMAILJS_*` keys and `VITE_OWNER_EMAIL` inbox.
+   - Required values:
+     - `VITE_EMAILJS_SERVICE_ID`
+     - `VITE_EMAILJS_TEMPLATE_ID`
+     - `VITE_EMAILJS_PUBLIC_KEY`
+     - `VITE_OWNER_EMAIL`
 4. (Optional) Install the Wrangler CLI if you will run preview deployments:
    ```bash
    npm install -g wrangler
@@ -30,7 +35,7 @@ Welcome to the Atlas Homes Frontend project! This guide walks you through enviro
    - Scroll through the hero slider and featured locations provided by [`Home`](src/pages/home/Home.tsx).
    - Click a location card to ensure routing to [`Homepage_PropertyDetails`](src/components/homepage_components/homepage_Propertydetails/Homepage_PropertyDetails.tsx) works.
    - Confirm the footer contact links render from [`footerData`](src/data.ts).
-4. Trigger a sample booking submission using EmailJS sandbox credentials and verify it succeeds (or fails with a sensible toast if credentials are missing).
+4. Trigger a sample booking submission and a contact form submission using EmailJS sandbox credentials and verify each succeeds (or fails with the missing-configuration alert if credentials are absent).
 
 ## 3. Explore the Codebase
 - Start at [`src/App.tsx`](src/App.tsx) to understand routing, navbar visibility toggles, and layout scaffolding.

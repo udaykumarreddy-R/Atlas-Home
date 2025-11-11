@@ -1,15 +1,43 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { propertyData } from "../../../data";
+import { propertyData } from "../../../data.ts";
 import Heading from "../../commonComponents/heading/Heading";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Navigation, Pagination, Scrollbar } from "swiper/modules";
-import './homepage_location.css'
+import { LISTINGS } from "../../../data/listings";
+import { loadListingImages } from "../../../utils/loadListingImages";
+import styles from "../../../styles/listings.css?inline";
+import "./homepage_location.css";
+
+const overlayStyle: React.CSSProperties = {
+  position: "absolute",
+  left: "12px",
+  bottom: "12px",
+  background: "rgba(0,0,0,.55)",
+  color: "#fff",
+  padding: "6px 10px",
+  borderRadius: "8px",
+  fontSize: "14px",
+};
 
 const HomePage_Locations = () => {
   const navigate = useNavigate();
 
+  const imagesByUnit = React.useMemo(() => loadListingImages(), []);
+
+  const propertyById = React.useMemo(() => {
+    const map = new Map<string, any>();
+    propertyData.forEach((item) => {
+      map.set(String(item.id), item);
+    });
+    return map;
+  }, []);
+
+  const items = React.useMemo(
+    () => [...LISTINGS].sort((a, b) => Number(!!b.featured) - Number(!!a.featured)),
+    []
+  );
+
   const handleNavigate = (property: any) => {
-    const checkedLocation = property.property_name.toLowerCase().replace(/\s+/g, '-')
+    const checkedLocation = property.property_name.toLowerCase().replace(/\s+/g, "-");
     navigate(`/property_details/${checkedLocation}`, { state: { property } });
   };
 
@@ -19,70 +47,51 @@ const HomePage_Locations = () => {
         <div className="pb-10">
           <Heading title={"Our Homes"} />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-14">
-          {propertyData?.map((property) => (
-            <div
-              key={property.id}
-              className="relative bg-white rounded-2xl cursor-pointer overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black/60"
-              onClick={() => handleNavigate(property)}
-              role="link"
-              tabIndex={0}
-              aria-label={`Open ${property.property_name}`}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.preventDefault();
-                  handleNavigate(property);
+        <style>{styles}</style>
+        <div className="listingsGrid">
+          {items.map((listing) => {
+            const property = propertyById.get(listing.id);
+            const imgs = imagesByUnit[listing.id] || [];
+            const cover = imgs[0];
+            const cardClass = listing.featured ? "card featured" : "card";
+            const ariaLabel = listing.featured ? "Penthouse 501 featured" : listing.title;
+
+            const interactiveProps: React.HTMLAttributes<HTMLElement> = property
+              ? {
+                  onClick: () => handleNavigate(property),
+                  role: "link",
+                  tabIndex: 0,
+                  onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      handleNavigate(property);
+                    }
+                  },
                 }
-              }}
-            >
-              {/* Image Slider */}
-              <div className="relative w-full h-52 md:h-52">
-                <Swiper
-                  modules={[Navigation, Pagination, Scrollbar, A11y]}
-                  navigation
-                  scrollbar={{ draggable: true }}
-                  loop={true}
-                  className="custom-swiper"
-                >
-                  {property?.property_img?.map((imgSrc, index) => (
-                    <SwiperSlide key={index}>
-                      <img
-                        src={imgSrc}
-                        alt={`${property.property_name} Image ${index + 1}`}
-                        className="w-full h-52 md:h-52 object-cover rounded-3xl"
-                      />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
+              : {};
 
-              </div>
-
-              {/* Property Info */}
-              <div className="p-2 md:p-2">
-                <div className="flex justify-between items-center gap-1">
-                  <h3 className="text-lg md:text-xl font-semibold text-gray-900 truncate">
-                    {property.property_name}
-                  </h3>
-                  <span className="ml-2 text-gray-400 text-sm">({property?.property_reviews || 59})</span>
+            return (
+              <article
+                key={listing.id}
+                className={cardClass}
+                aria-label={ariaLabel}
+                {...interactiveProps}
+              >
+                {cover ? (
+                  <img src={cover} alt={`${listing.title} cover`} />
+                ) : (
+                  <div style={{ padding: 16 }}>No image</div>
+                )}
+                <div style={overlayStyle}>
+                  <strong>{listing.title}</strong>
+                  {listing.subtitle ? <div style={{ opacity: 0.9 }}>{listing.subtitle}</div> : null}
                 </div>
-                <p className="text-gray-500 text-sm ">{property.property_location}</p>
-
-                <div className="flex items-center">
-                  <span className="text-yellow-500 font-bold">★</span>
-                  <span className="ml-1 font-medium">{property?.property_rating || 4.9}</span>
-                </div>
-
-                <p className=" text-gray-900 font-semibold text-lg">
-                  ₹{property?.property_price || 4996} <span className="text-gray-500 font-normal text-sm">for 1 night</span>
-                </p>
-              </div>
-            </div>
-
-          ))
-          }
-        </div >
-      </div >
-    </section >
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 };
 

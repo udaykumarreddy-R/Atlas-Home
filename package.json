@@ -5,10 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc -b && vite build",
+    "prebuild": "node -v && npm -v",
+    "build": "vite build",
     "lint": "eslint .",
     "test": "vitest",
     "preview": "vite preview"
+  },
+  "engines": {
+    "node": ">=20 <21",
+    "npm": ">=10"
+  },
+  "overrides": {
+    "@jridgewell/sourcemap-codec": "1.5.5"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

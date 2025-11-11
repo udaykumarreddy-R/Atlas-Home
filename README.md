@@ -12,6 +12,16 @@ Optional tooling:
 - Wrangler CLI (for deploying the production build to Cloudflare Workers)
 - ESLint-compatible editor integration for real-time lint feedback
 
+## Build Environment
+- Node **20.11.1** (LTS)
+- npm **10+**
+- Cloudflare Pages build vars → `NODE_VERSION=20.11.1`, `NPM_FLAGS=--no-audit --no-fund`
+- Enforced override → `@jridgewell/sourcemap-codec@1.5.5`
+
+### Lockfile maintenance
+- Use Node 20.x (see `.nvmrc`) and run `npm install` to refresh dependencies.
+- Always commit the resulting `package-lock.json` so `npm ci` stays in sync locally, in CI, and during Cloudflare builds.
+
 ## Quickstart
 1. **Install dependencies**
    ```bash

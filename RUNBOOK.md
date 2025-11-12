@@ -11,30 +11,18 @@ This runbook captures the day-to-day operational tasks for the Atlas Homes Front
    ```
 3. Confirm `dist/` is generated without TypeScript or ESLint errors.
 
-## Deployment (Cloudflare Workers)
-1. Ensure you are authenticated with Wrangler:
-   ```bash
-   npx wrangler login
-   ```
-2. Deploy the latest build:
-   ```bash
-   npm run build
-   npx wrangler deploy
-   ```
-3. Validate deployment by visiting the Worker URL and checking:
+## Deployment (Cloudflare Pages)
+1. Merge or push the desired commit to the `main` branch; Cloudflare Pages automatically runs `npm run build` and publishes the static bundle.
+2. Monitor the deployment from the Pages dashboard. Re-run the build if necessary using the "Retry deployment" action.
+3. Validate deployment by visiting the production URL and checking:
    - Navbar renders contact info from [`footerData`](src/data.ts).
    - Routes navigate correctly (`/`, `/property_details/<slug>`).
    - EmailJS forms fail gracefully if credentials are absent (expected in staging environments).
 
 ## Rolling Back
 1. Identify the previous stable tag/commit in `main`.
-2. Redeploy that revision via Wrangler:
-   ```bash
-   git checkout <stable-commit>
-   npm install
-   npm run build
-   npx wrangler deploy
-   ```
+2. Trigger a redeploy of that commit from the Cloudflare Pages dashboard (use the "Retry deployment" action on the desired revision).
+   - If necessary, create a temporary branch and open a pull request that reverts to the stable commit, then merge to `main` to publish.
 3. Create a hotfix issue outlining the regression and mitigation status.
 
 ## EmailJS Credential Rotation

@@ -13,7 +13,7 @@
 ## Credential Management
 - EmailJS service IDs, template IDs, and public keys belong in environment variables (see `.env.example`).
 - Never commit production credentials. Rotate keys immediately if leakage is suspected and update `.env` in each environment.
-- Cloudflare credentials used by Wrangler should be stored via `wrangler login` or environment-specific secrets providers.
+- Cloudflare Pages project access should use scoped API tokens or dashboard roles; avoid sharing global account credentials.
 
 ## Secure Development Checklist
 - [ ] Validate all user input on forms (basic email validation exists; extend as needed).

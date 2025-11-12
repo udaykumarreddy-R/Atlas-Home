@@ -3,6 +3,25 @@ import { resolveOptimizedAsset, resolveOptimizedGallery } from "./utils/resolveO
 const logo = resolveOptimizedAsset("logo-removebg-preview (3).png");
 
 const propertyImagePaths: Record<string, string[]> = {
+    "501": [
+        '501/IMG_1.jpg',
+        '501/IMG_2.jpg',
+        '501/IMG_3.jpg',
+        '501/IMG_4.jpg',
+        '501/IMG_5.jpg',
+        '501/IMG_6.jpg',
+        '501/IMG_7.jpg',
+        '501/IMG_8.jpg',
+        '501/IMG_10.jpg',
+        '501/IMG_22.JPG',
+        '501/IMG_24.JPG',
+        '501/IMG_31.jpg',
+        '501/IMG_2378.jpg',
+        '501/IMG_2381.jpg',
+        '501/IMG_2390.jpg',
+        '501/IMG_2393.jpg',
+        '501/IMG_1069.jpg',
+    ],
     "201": [
         'airbnb201/img_11.jpg',
         'airbnb201/img_2.jpg',
@@ -82,6 +101,80 @@ const propertyImages: Record<string, string[]> = Object.fromEntries(
 );
 
 export const propertyData = [
+    {
+        id: 501,
+        property_name: "Atlas Penthouse 501",
+        property_description: `Perched high above Hyderabad’s energetic skyline, Atlas Penthouse 501 delivers a five-star
+retreat for guests who want a private sanctuary near the city’s tech corridor. Spanning more than 1,600 sq. ft. with
+panoramic glass walls, this duplex penthouse blends luxury finishes with thoughtfully curated conveniences so you can host,
+work, and unwind without compromise.
+
+Indoor Spaces:
+Step through the private foyer into a sun-filled living room, featuring designer seating, a 65-inch smart TV, Dolby Atmos
+sound, and floor-to-ceiling views. The open gourmet kitchen boasts a breakfast island, built-in oven, induction cooktop,
+microwave, dishwasher, and premium cookware. A dedicated study lounge with ergonomic seating and dual monitors keeps remote
+work effortless, while the master suite offers a king-size memory-foam bed, walk-in wardrobe, rainfall shower, soaking tub,
+and vanity lighting. Two additional guest rooms include queen beds, ensuite baths with luxury toiletries, and blackout
+drapery for restorative sleep.
+
+Outdoor Spaces:
+Take the elevator to your exclusive rooftop terrace with plunge pool, outdoor shower, pergola lounge, and alfresco dining
+for eight. The wraparound balcony off the living room is perfect for sunrise yoga or evening cocktails while watching the
+Cyber Towers sparkle to life. Smart garden lighting, potted palms, and Bluetooth speakers extend the ambiance outdoors.
+
+Signature Amenities:
+Central air-conditioning with smart zoning, 1 Gbps fiber internet (dual ISP), inverter backup, digital door lock with
+video intercom, dedicated concierge desk, and bi-weekly housekeeping with on-demand butler service. Guests enjoy access to a
+private bar setup, wine chiller, Nespresso machine, washer-dryer, ironing station, board games, and curated library.`,
+        property_location: "Hyderabad, Telangana",
+        property_reviews: 128,
+        property_rating: 4.95,
+        property_price: 14999,
+        property_img: propertyImages["501"],
+        property_nearplaces: [
+            "Inorbit Mall (3 km)",
+            "Cyber Towers (2 km)",
+            "Hitech City Metro (2.5 km)",
+            "Durgam Cheruvu Lake"
+        ],
+        property_amenities: [
+            { amenities_icon: "king-size bed" },
+            { amenities_icon: "queen guest suites" },
+            { amenities_icon: "private terrace" },
+            { amenities_icon: "plunge pool" },
+            { amenities_icon: "65-inch smart tv" },
+            { amenities_icon: "dolby atmos sound" },
+            { amenities_icon: "high-speed wifi" },
+            { amenities_icon: "gourmet kitchen" },
+            { amenities_icon: "dishwasher" },
+            { amenities_icon: "wine chiller" },
+            { amenities_icon: "nespresso machine" },
+            { amenities_icon: "study lounge" },
+            { amenities_icon: "workspace monitors" },
+            { amenities_icon: "washer-dryer" },
+            { amenities_icon: "housekeeping" },
+            { amenities_icon: "concierge support" },
+            { amenities_icon: "video intercom" },
+            { amenities_icon: "pets allowed (on request)" },
+            { amenities_icon: "smoking area (terrace)" }
+        ],
+        property_mapSrc: "https://maps.google.com/maps?q=17.469663,78.386632&z=17&output=embed",
+        property_policy_details: [
+            { type: "Check-in", value: "2:00 PM" },
+            { type: "Check-out", value: "11:00 AM" },
+            { type: "Base Occupancy", value: "4 guests" },
+            { type: "Maximum Occupancy", value: "Up to 6 guests with prior approval" },
+            { type: "Extra Guests", value: "Additional guests charged ₹1,200 per night" },
+            { type: "Children Policy", value: "Children above 5 years count toward occupancy" },
+            { type: "Pets", value: "Allowed on request with ₹750 per day sanitation fee" },
+            { type: "Pool Usage", value: "Plunge pool open 7 AM – 10 PM, no glassware outdoors" },
+            { type: "Smoking", value: "Permitted only on terrace and balcony" },
+            { type: "Music", value: "Outdoor speakers off after 9 PM" },
+            { type: "Events", value: "Intimate gatherings allowed with concierge approval" },
+            { type: "Housekeeping", value: "Bi-weekly service included, daily available on request" },
+            { type: "Cancellation Policy", value: "Full refund up to 5 days prior, 50% thereafter" }
+        ],
+    },
     {
         id: 201,
         property_name: "Atlas Homes Room 201",

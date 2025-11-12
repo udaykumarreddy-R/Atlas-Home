@@ -13,9 +13,9 @@ Optional tooling:
 - ESLint-compatible editor integration for real-time lint feedback
 
 ## Build Environment
-- Node **20.11.1** (LTS)
+- Node **20.18.1** (LTS)
 - npm **10+**
-- Cloudflare Pages build vars → `NODE_VERSION=20.11.1`, `NPM_FLAGS=--no-audit --no-fund`
+- Cloudflare Pages build vars → `NODE_VERSION=20.18.1`, `NPM_FLAGS=--no-audit --no-fund`
 - Enforced override → `@jridgewell/sourcemap-codec@1.5.5`
 
 ### Lockfile maintenance

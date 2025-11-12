@@ -1,9 +1,4 @@
-import img1 from '../../../assets/destination_images/mussorie.png';
-import img2 from '../../../assets/NearByplaces/kolaba.webp';
-import img3 from '../../../assets/NearByplaces/Nagaon_Beach.jpg';
-import img4 from '../../../assets/NearByplaces/Kashid-Beach.jpg';
-import img5 from '../../../assets/NearByplaces/murund_janjira.jpg';
-import img6 from '../../../assets/NearByplaces/kihim.jpg';
+import { resolveOptimizedAsset } from '../../../utils/resolveOptimizedAsset';
 
 interface Place {
     title: string;
@@ -15,32 +10,32 @@ const NearByPlaces = () => {
     const data: Place[] = [
         {
             title: "Alibaug Beach",
-            thumbnail: img1,
+            thumbnail: resolveOptimizedAsset('destination_images/mussorie.png'),
             description: "A serene beach perfect for relaxing and enjoying the sunset.",
         },
         {
             title: "Kolaba Fort",
-            thumbnail: img2,
+            thumbnail: resolveOptimizedAsset('NearByplaces/kolaba.webp'),
             description: "A historic sea fort accessible during low tide, offering a glimpse into the region's rich history.",
         },
         {
             title: "Nagaon Beach",
-            thumbnail: img3,
+            thumbnail: resolveOptimizedAsset('NearByplaces/Nagaon_Beach.jpg'),
             description: "Known for its water sports activities like banana boat rides and parasailing.",
         },
         {
             title: "Kashid Beach",
-            thumbnail: img4,
+            thumbnail: resolveOptimizedAsset('NearByplaces/Kashid-Beach.jpg'),
             description: "A pristine beach with white sand, ideal for a peaceful getaway.",
         },
         {
             title: "Murud-Janjira Fort",
-            thumbnail: img5,
+            thumbnail: resolveOptimizedAsset('NearByplaces/murund_janjira.jpg'),
             description: "A majestic fort located on an island, famous for its architecture and history.",
         },
         {
             title: "Kihim Beach",
-            thumbnail: img6,
+            thumbnail: resolveOptimizedAsset('NearByplaces/kihim.jpg'),
             description: "A tranquil spot surrounded by lush greenery, perfect for nature lovers.",
         },
     ];

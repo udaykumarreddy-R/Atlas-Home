@@ -1,14 +1,16 @@
 import CommonBanner from "../../components/commonComponents/banner/CommonBanner";
-import img1 from "../../assets/destination_images/manali.png";
-import img2 from "../../assets/pinnacle_images/p_1.jpeg";
 import Parallax from "../../components/commonComponents/parallax/Parallax";
 import NearByPlaces from "../../components/aboutpage_component/nearbyplaces/NearByPlaces";
+import { resolveOptimizedAsset } from "../../utils/resolveOptimizedAsset";
+
+const parallaxImage = resolveOptimizedAsset("destination_images/manali.png");
+const bannerImage = resolveOptimizedAsset("banner.jpg");
 
 const About = () => {
     return (
         <section>
             <div>
-                <CommonBanner image={img2} PageName={'About Us'} />
+                <CommonBanner image={bannerImage} PageName={'About Us'} />
             </div>
             <div className="tracking-wide py-20 px-8 lg:px-32 flex flex-col gap-8 text-justify">
                 {/* Title */}
@@ -36,7 +38,7 @@ const About = () => {
             </div>
             {/* Parallax */}
             <div>
-                <Parallax image={img1} title={'Only Stay – Where Luxury Meets Tranquility'} description={'Escape to Only Stay, a sanctuary where elegance and serenity blend seamlessly. Experience unmatched hospitality, thoughtfully designed spaces, and a deep connection with nature—crafted to create moments that last a lifetime.'} />
+                <Parallax image={parallaxImage} title={'Only Stay – Where Luxury Meets Tranquility'} description={'Escape to Only Stay, a sanctuary where elegance and serenity blend seamlessly. Experience unmatched hospitality, thoughtfully designed spaces, and a deep connection with nature—crafted to create moments that last a lifetime.'} />
             </div>
             {/* Nearby Places */}
             <div>

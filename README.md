@@ -61,7 +61,7 @@ Optional tooling:
 | `src/components/homepage_components/homepage_locationsdetails/Homepage_LocationDetails.tsx` | Location-deep page with filters, hero carousel, and booking modal for grouped listings. |
 | `src/data.ts` | Source of property metadata, navigation content, and footer links consumed across the UI. |
 | `src/components/commonComponents/navbar/Navbar.tsx` / `footer/Footer.tsx` | Global navigation/header ribbon and footer contact blocks. |
-| `docs/` | Living documentation for onboarding, architecture, operations, security, and starter tasks. |
+| `docs/` | Working notes covering the API guide and first PR starter; see `ONBOARDING.md`, `ARCHITECTURE.md`, `RUNBOOK.md`, and `SECURITY.md` for the comprehensive onboarding, architecture, operations, and security docs. |
 
 ## Common Tasks
 | Goal | Command |

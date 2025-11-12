@@ -17,7 +17,7 @@ const Homepage_LocationDetails = () => {
     const [selectedProperty, setSelectedProperty] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const locationViseData = location.state?.property.properties;
+    const locationViseData = location.state?.property?.properties;
 
     console.log(locationViseData, "loactionViseData")
 
@@ -61,7 +61,7 @@ const Homepage_LocationDetails = () => {
     };
 
     // Add a check to handle cases where property data might not exist
-    if (locationViseData.length === 0) {
+    if (!Array.isArray(locationViseData) || locationViseData.length === 0) {
         return (
             <section className="select-none h-screen bg-gray-200 justify-center items-center flex flex-col gap-10 py-4 pt-14">
                 <div>
@@ -206,7 +206,7 @@ const Homepage_LocationDetails = () => {
 
                     {/* our location wise properties = Right side  */}
                     <div className="flex-[3.5] w-full h-fit grid grid-cols-1 place-items-center gap-6">
-                        {locationViseData?.map((data: any) => (
+                        {locationViseData.map((data: any) => (
                             <div
                                 key={data.id}
                                 className="group w-full flex flex-col md:flex-row gap-4 bg-white p-4 border border-gray-200 hover:border-primary rounded-md shadow-sm transition"

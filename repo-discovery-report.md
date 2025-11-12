@@ -1,7 +1,7 @@
 # Repo Discovery Report
 
 ## Executive Summary
-Atlas Homes Frontend is a React 18 + TypeScript single-page marketing site built with Vite and Tailwind CSS. It showcases property inventory defined in-code (`src/data.ts`) and enables booking/contact outreach via EmailJS integrations. Static hosting is configured for Cloudflare Workers.
+Atlas Homes Frontend is a React 18 + TypeScript single-page marketing site built with Vite and Tailwind CSS. It showcases property inventory defined in-code (`src/data.ts`) and enables booking/contact outreach via EmailJS integrations. Static hosting is provided by Cloudflare Pages.
 
 ## Tech Stack Overview
 | Layer | Technology | Notes |
@@ -11,7 +11,7 @@ Atlas Homes Frontend is a React 18 + TypeScript single-page marketing site built
 | Routing | React Router DOM v6 | Declared in [`src/App.tsx`](src/App.tsx) with nested layout wrapper.
 | Assets | Swiper, Fancybox, React Icons | Powers carousels, galleries, and iconography.
 | Integrations | EmailJS | Booking/contact forms send emails via REST API keys.
-| Hosting | Cloudflare Workers | `wrangler.toml` points to `dist/` bundle.
+| Hosting | Cloudflare Pages | Cloudflare Pages builds `dist/` from `npm run build` and serves static assets.
 
 ## Architecture Artifacts
 - System context and component interaction diagrams live in [`ARCHITECTURE.md`](ARCHITECTURE.md).

@@ -32,7 +32,7 @@ Welcome to the Atlas Homes Frontend project! This guide walks you through enviro
    - Scroll through the hero slider and featured locations provided by [`Home`](src/pages/home/Home.tsx).
    - Click a location card to ensure routing to [`Homepage_PropertyDetails`](src/components/homepage_components/homepage_Propertydetails/Homepage_PropertyDetails.tsx) works.
    - Confirm the footer contact links render from [`footerData`](src/data.ts).
-4. Trigger a sample booking submission and a contact form submission using EmailJS sandbox credentials and verify each succeeds (or fails with the missing-configuration alert if credentials are absent).
+4. Trigger a sample booking submission and a contact form submission using EmailJS sandbox credentials and verify each succeeds (or fails with the missing-configuration alert if credentials are absent). Use the "Contact" link in the navigation (or go directly to [`/contact`](src/App.tsx)) to reach the form and confirm the page renders as expected.
 
 ## 3. Explore the Codebase
 - Start at [`src/App.tsx`](src/App.tsx) to understand routing, navbar visibility toggles, and layout scaffolding.

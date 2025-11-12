@@ -4,7 +4,7 @@ import PageNotFound from "./pages/pagenotfound/PageNotFound"
 import Home from "./pages/home/Home"
 import Navbar from "./components/commonComponents/navbar/Navbar"
 import Footer from "./components/commonComponents/footer/Footer"
-// import ContactUs from "./pages/contactus/ContactUs"
+import ContactUs from "./pages/contactus/ContactUs"
 import Homepage_PropertyDetails from "./components/homepage_components/homepage_Propertydetails/Homepage_PropertyDetails"
 // import About from "./pages/about/About"
 import ScrollToTop from "./ScrollTop"
@@ -27,7 +27,7 @@ function AppWrapper() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/about" element={<About />} /> */}
-        {/* <Route path="/contact" element={<ContactUs />} /> */}
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/property_details/:id" element={<Homepage_PropertyDetails />} />
         <Route path="/property_LocationDetails/:id" element={<Homepage_LocationDetails />} />
         <Route path="/*" element={<PageNotFound />} />

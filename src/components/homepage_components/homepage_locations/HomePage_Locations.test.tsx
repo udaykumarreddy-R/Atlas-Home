@@ -1,5 +1,16 @@
 import { describe, expect, it, vi, beforeEach } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, within, fireEvent } from "@testing-library/react";
+
+const navigateMock = vi.fn();
+
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual<typeof import("react-router-dom")>("react-router-dom");
+  return {
+    ...actual,
+    useNavigate: () => navigateMock,
+  };
+});
+
 import { MemoryRouter } from "react-router-dom";
 
 vi.mock("../../../styles/listings.css?inline", () => ({ default: "" }));
@@ -19,6 +30,7 @@ import HomePage_Locations from "./HomePage_Locations";
 describe("HomePage_Locations", () => {
   beforeEach(() => {
     loadListingImagesMock.mockClear();
+    navigateMock.mockClear();
   });
 
   it("renders the featured listing with the featured class", () => {
@@ -54,5 +66,28 @@ describe("HomePage_Locations", () => {
 
     const featuredImage = screen.getByAltText("Atlas Penthouse 501 cover") as HTMLImageElement;
     expect(featuredImage.src).toContain("penthouse.jpg");
+  });
+
+  it("makes the featured card interactive and routes to the detail page", () => {
+    render(
+      <MemoryRouter>
+        <HomePage_Locations />
+      </MemoryRouter>
+    );
+
+    const firstCard = screen.getAllByRole("article")[0];
+    expect(firstCard).toHaveAttribute("role", "link");
+    expect(firstCard).toHaveAttribute("tabIndex", "0");
+
+    fireEvent.click(firstCard);
+
+    expect(navigateMock).toHaveBeenCalledWith(
+      "/property_details/atlas-penthouse-501",
+      expect.objectContaining({
+        state: {
+          property: expect.objectContaining({ id: 501, property_name: "Atlas Penthouse 501" }),
+        },
+      })
+    );
   });
 });

@@ -9,7 +9,7 @@ Atlas Homes Frontend is a Vite-powered React + TypeScript single-page applicatio
 - Modern browser for previewing the development server
 
 Optional tooling:
-- Wrangler CLI (for deploying the production build to Cloudflare Workers)
+- Access to the Cloudflare Pages project dashboard for monitoring deployments
 - ESLint-compatible editor integration for real-time lint feedback
 
 ## Build Environment
@@ -70,14 +70,14 @@ Optional tooling:
 | Run ESLint across the project | `npm run lint` |
 | Build production assets | `npm run build` |
 | Preview built assets locally | `npm run preview` |
-| Deploy static bundle with Wrangler | `npx wrangler deploy` |
+| Trigger Cloudflare Pages deployment | Push to `main` (Pages builds with `npm run build`) |
 
 ## Troubleshooting
 - **Node version errors:** Verify `node -v` meets the prerequisite range. Use `nvm` or `fnm` to align versions.
 - **Port 5173 already in use:** Override with `npm run dev -- --port 5174` or free the port before starting Vite.
 - **Blank property pages:** Ensure navigation via the homepage so React Router receives the `location.state` payload required by [`Homepage_LocationDetails`](src/components/homepage_components/homepage_locationsdetails/Homepage_LocationDetails.tsx).
 - **Email delivery fails:** Confirm the EmailJS service, template, and public keys are filled in `.env` and referenced in [`BookingFrom.tsx`](src/components/homepage_components/homepage_Propertydetails/BookingFrom.tsx) and [`ContactUs.tsx`](src/pages/contactus/ContactUs.tsx).
-- **Cloudflare deployment issues:** Run `npm run build` before `wrangler deploy`; Wrangler serves the contents of `dist/` configured in [`wrangler.toml`](wrangler.toml).
+- **Cloudflare deployment issues:** Ensure the Pages build command (`npm run build`) succeeds locally; failed builds prevent deploys.
 
 ## Listings
 - Featured listing: mark `featured: true` in [`src/data/listings.ts`](src/data/listings.ts). Images are auto-loaded from `src/assets/<unit>/`.

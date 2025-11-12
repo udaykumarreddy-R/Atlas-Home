@@ -20,10 +20,7 @@ Welcome to the Atlas Homes Frontend project! This guide walks you through enviro
      - `VITE_EMAILJS_TEMPLATE_ID`
      - `VITE_EMAILJS_PUBLIC_KEY`
      - `VITE_OWNER_EMAIL`
-4. (Optional) Install the Wrangler CLI if you will run preview deployments:
-   ```bash
-   npm install -g wrangler
-   ```
+4. (Optional) Request access to the Cloudflare Pages project so you can monitor build logs and trigger redeploys from the dashboard.
 
 ## 2. Verify the Application
 1. Start the dev server:

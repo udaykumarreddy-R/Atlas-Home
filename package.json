@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
+    "dev": "vite",
     "prebuild": "node -v && npm -v",
     "build": "vite build",
     "lint": "eslint .",
-    "test": "vitest",
+    "format": "prettier -w .",
     "preview": "vite preview"
   },
   "engines": {
@@ -48,6 +48,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
     "postcss": "^8.4.49",
+    "prettier": "^3.3.3",
     "tailwindcss": "^3.4.15",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.11.0",

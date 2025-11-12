@@ -1,18 +1,17 @@
-import Parallax from "../../components/commonComponents/parallax/Parallax"
-// import Amenities from "../../components/homepage_components/amenities/Amenities"
-import Homepage_ExclusiveService from "../../components/homepage_components/homepage_exclusiveservice/Homepage_ExclusiveService"
-// import Homepage_LetUsGuide from "../../components/homepage_components/homepage_letusguide/Homepage_LetUsGuide"
-// import Homepage_Properties from "../../components/homepage_components/homepage_Properties/Homepage_Properties"
-import Homepage_Testimonial from "../../components/homepage_components/homepage_testimonial/Homepage_Testimonial"
-import Homepage_WhyChoose from "../../components/homepage_components/homepage_whychoose/Homepage_WhyChoose"
-import Slider from "../../components/homepage_components/slider/Slider"
-import img from '../../assets/airbnb301/img_1.jpg'
-import HomePage_Locations from "../../components/homepage_components/homepage_locations/HomePage_Locations"
-// import Subheading from "../../components/commonComponents/subheading/Subheading"
-// import CounterUp from "../../components/homepage_components/counterup/CounterUp"
+import Parallax from "../../components/commonComponents/parallax/Parallax";
+// import Amenities from "../../components/homepage_components/amenities/Amenities";
+import Homepage_ExclusiveService from "../../components/homepage_components/homepage_exclusiveservice/Homepage_ExclusiveService";
+// import Homepage_LetUsGuide from "../../components/homepage_components/homepage_letusguide/Homepage_LetUsGuide";
+// import Homepage_Properties from "../../components/homepage_components/homepage_Properties/Homepage_Properties";
+import Homepage_Testimonial from "../../components/homepage_components/homepage_testimonial/Homepage_Testimonial";
+import Homepage_WhyChoose from "../../components/homepage_components/homepage_whychoose/Homepage_WhyChoose";
+import Slider from "../../components/homepage_components/slider/Slider";
+import { resolveOptimizedAsset } from "../../utils/resolveOptimizedAsset";
+import HomePage_Locations from "../../components/homepage_components/homepage_locations/HomePage_Locations";
+
+const parallaxImage = resolveOptimizedAsset('airbnb301/img_1.jpg');
 
 const Home = () => {
-    // Slider Images 
     return (
         <section className="relative font-roboto select-none">
             <div className="w-full h-fit relative ">
@@ -26,7 +25,7 @@ const Home = () => {
             </div>
             <div className="m-8">
                 <Parallax
-                    image={img}
+                    image={parallaxImage}
                     title={'Atlas Homes – Where Every Stay Feels Like Home'}
                     description={'At Atlas Homes, every detail is designed for your comfort. Relax in beautifully appointed spaces, enjoy modern amenities, and make every moment unforgettable.'}
                 />
@@ -51,7 +50,7 @@ const Home = () => {
                 <Homepage_Testimonial />
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default Home
+export default Home;

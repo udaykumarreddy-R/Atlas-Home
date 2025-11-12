@@ -1,77 +1,85 @@
-import logo from "./assets/logo-removebg-preview (3).png";
+import { resolveOptimizedAsset, resolveOptimizedGallery } from "./utils/resolveOptimizedAsset";
 
+const logo = resolveOptimizedAsset("logo-removebg-preview (3).png");
 
-//  201 
-import air201img1 from './assets/airbnb201/img_11.jpg';
-import air201img2 from './assets/airbnb201/img_2.jpg';
-import air201img3 from './assets/airbnb201/img_3.jpg';
-import air201img4 from './assets/airbnb201/img_4.jpg';
-import air201img5 from './assets/airbnb201/img_5.jpg';
-import air201img6 from './assets/airbnb201/img_6.jpg';
-import air201img7 from './assets/airbnb201/img_7.jpg';
-import air201img8 from './assets/airbnb201/img_8.jpg';
-import air201img9 from './assets/airbnb201/img_9.jpg';
-import air201img10 from './assets/airbnb201/img_10.jpg';
+const propertyImagePaths: Record<string, string[]> = {
+    "201": [
+        'airbnb201/img_11.jpg',
+        'airbnb201/img_2.jpg',
+        'airbnb201/img_3.jpg',
+        'airbnb201/img_4.jpg',
+        'airbnb201/img_5.jpg',
+        'airbnb201/img_6.jpg',
+        'airbnb201/img_7.jpg',
+        'airbnb201/img_8.jpg',
+        'airbnb201/img_9.jpg',
+        'airbnb201/img_10.jpg',
+    ],
+    "202": [
+        'airbnb202/img_1.jpg',
+        'airbnb202/img_2.jpg',
+        'airbnb202/img_3.jpg',
+        'airbnb202/img_4.jpg',
+        'airbnb202/img_5.jpg',
+        'airbnb202/img_6.jpg',
+        'airbnb202/img_7.jpg',
+        'airbnb202/img_8.jpg',
+        'airbnb202/img_9.jpg',
+        'airbnb202/img_10.jpg',
+    ],
+    "301": [
+        'airbnb301/img_1.jpg',
+        'airbnb301/img_2.jpg',
+        'airbnb301/img_3.jpg',
+        'airbnb301/img_4.jpg',
+        'airbnb301/img_5.jpg',
+        'airbnb301/img_6.jpg',
+        'airbnb301/img_7.jpg',
+        'airbnb301/img_8.jpg',
+        'airbnb301/img_9.jpg',
+        'airbnb301/img_10.jpg',
+    ],
+    "101": [
+        '101/img_1.jpg',
+        '101/img_2.jpg',
+        '101/img_3.jpg',
+        '101/img_4.jpg',
+        '101/img_5.jpg',
+        '101/img_6.jpg',
+        '101/img_7.jpg',
+        '101/img_8.jpg',
+        '101/img_9.jpg',
+        '101/img_10.jpg',
+    ],
+    "102": [
+        '102/img_1.jpg',
+        '102/img_2.jpg',
+        '102/img_3.jpg',
+        '102/img_4.jpg',
+        '102/img_5.jpg',
+        '102/img_6.jpg',
+        '102/img_7.jpg',
+        '102/img_8.jpg',
+        '102/img_9.jpg',
+        '102/img_10.jpg',
+    ],
+    "302": [
+        '302/img_1.jpg',
+        '302/img_2.jpg',
+        '302/img_3.jpg',
+        '302/img_4.jpg',
+        '302/img_5.jpg',
+        '302/img_6.jpg',
+        '302/img_7.jpg',
+        '302/img_8.jpg',
+        '302/img_9.jpg',
+        '302/img_10.jpg',
+    ],
+};
 
-//202
-import air202img1 from './assets/airbnb202/img_1.jpg';
-import air202img2 from './assets/airbnb202/img_2.jpg';
-import air202img3 from './assets/airbnb202/img_3.jpg';
-import air202img4 from './assets/airbnb202/img_4.jpg';
-import air202img5 from './assets/airbnb202/img_5.jpg';
-import air202img6 from './assets/airbnb202/img_6.jpg';
-import air202img7 from './assets/airbnb202/img_7.jpg';
-import air202img8 from './assets/airbnb202/img_8.jpg';
-import air202img9 from './assets/airbnb202/img_9.jpg';
-import air202img10 from './assets/airbnb202/img_10.jpg';
-
-// 301
-import air301img1 from './assets/airbnb301/img_1.jpg';
-import air301img2 from './assets/airbnb301/img_2.jpg';
-import air301img3 from './assets/airbnb301/img_3.jpg';
-import air301img4 from './assets/airbnb301/img_4.jpg';
-import air301img5 from './assets/airbnb301/img_5.jpg';
-import air301img6 from './assets/airbnb301/img_6.jpg';
-import air301img7 from './assets/airbnb301/img_7.jpg';
-import air301img8 from './assets/airbnb301/img_8.jpg';
-import air301img9 from './assets/airbnb301/img_9.jpg';
-import air301img10 from './assets/airbnb301/img_10.jpg';
-
-// 101
-import air101img1 from './assets/101/img_1.jpg';
-import air101img2 from './assets/101/img_2.jpg';
-import air101img3 from './assets/101/img_3.jpg';
-import air101img4 from './assets/101/img_4.jpg';
-import air101img5 from './assets/101/img_5.jpg';
-import air101img6 from './assets/101/img_6.jpg';
-import air101img7 from './assets/101/img_7.jpg';
-import air101img8 from './assets/101/img_8.jpg';
-import air101img9 from './assets/101/img_9.jpg';
-import air101img10 from './assets/101/img_10.jpg';
-
-// 102
-import air102img1 from './assets/102/img_1.jpg';
-import air102img2 from './assets/102/img_2.jpg';
-import air102img3 from './assets/102/img_3.jpg';
-import air102img4 from './assets/102/img_4.jpg';
-import air102img5 from './assets/102/img_5.jpg';
-import air102img6 from './assets/102/img_6.jpg';
-import air102img7 from './assets/102/img_7.jpg';
-import air102img8 from './assets/102/img_8.jpg';
-import air102img9 from './assets/102/img_9.jpg';
-import air102img10 from './assets/102/img_10.jpg';
-
-// 302 
-import air302img1 from './assets/302/img_1.jpg';
-import air302img2 from './assets/302/img_2.jpg';
-import air302img3 from './assets/302/img_3.jpg';
-import air302img4 from './assets/302/img_4.jpg';
-import air302img5 from './assets/302/img_5.jpg';
-import air302img6 from './assets/302/img_6.jpg';
-import air302img7 from './assets/302/img_7.jpg';
-import air302img8 from './assets/302/img_8.jpg';
-import air302img9 from './assets/302/img_9.jpg';
-import air302img10 from './assets/302/img_10.jpg';
+const propertyImages: Record<string, string[]> = Object.fromEntries(
+    Object.entries(propertyImagePaths).map(([key, paths]) => [key, resolveOptimizedGallery(paths)])
+);
 
 export const propertyData = [
     {
@@ -91,18 +99,7 @@ High-speed Wi-Fi (150 Mbps, multiple ISPs), air-conditioning in the bedroom, a f
         property_reviews: 59,
         property_rating: 4.9,
         property_price: 4996,
-        property_img: [
-            air201img1,
-            air201img2,
-            air201img3,
-            air201img4,
-            air201img5,
-            air201img6,
-            air201img7,
-            air201img8,
-            air201img9,
-            air201img10
-        ],
+        property_img: propertyImages["201"],
         property_nearplaces: [
             "Cyber Towers (2 km)",
             "Local Markets",
@@ -160,18 +157,7 @@ Complimentary Wi-Fi, air-conditioning, inverter backup, daily housekeeping, and 
         property_reviews: 64,
         property_rating: 4.8,
         property_price: 5199,
-        property_img: [
-            air202img1,
-            air202img2,
-            air202img3,
-            air202img4,
-            air202img5,
-            air202img6,
-            air202img7,
-            air202img8,
-            air202img9,
-            air202img10
-        ],
+        property_img: propertyImages["202"],
         property_nearplaces: [
             "Cyber Towers (2 km)",
             "KPHB Local Shops",
@@ -232,18 +218,7 @@ Complimentary Wi-Fi (150 Mbps), fully equipped kitchen (gas stove, microwave, re
         property_reviews: 72,
         property_rating: 4.7,
         property_price: 5399,
-        property_img: [
-            air301img1,
-            air301img2,
-            air301img3,
-            air301img4,
-            air301img5,
-            air301img6,
-            air301img7,
-            air301img8,
-            air301img9,
-            air301img10
-        ],
+        property_img: propertyImages["301"],
         property_nearplaces: [
             "Cyber Towers (2 km)",
             "KPHB Local Shops",
@@ -300,18 +275,7 @@ High-speed Wi-Fi (150 Mbps, multiple ISPs), air-conditioning in the bedroom, a f
         property_reviews: 85,
         property_rating: 4.9,
         property_price: 4499,
-        property_img: [
-            air101img1,
-            air101img2,
-            air101img3,
-            air101img4,
-            air101img5,
-            air101img6,
-            air101img7,
-            air101img8,
-            air101img9,
-            air101img10
-        ],
+        property_img: propertyImages["101"],
         property_nearplaces: [
             "Cyber Towers (2 km)",
             "Local Markets",
@@ -369,18 +333,7 @@ Enjoy uninterrupted high-speed Wi-Fi, AC, and a fully equipped kitchen with gas 
         property_reviews: 91,
         property_rating: 4.8,
         property_price: 4699,
-        property_img: [
-            air102img1,
-            air102img2,
-            air102img3,
-            air102img4,
-            air102img5,
-            air102img6,
-            air102img7,
-            air102img8,
-            air102img9,
-            air102img10
-        ],
+        property_img: propertyImages["102"],
         property_nearplaces: [
             "Cyber Towers (2 km)",
             "IT Hubs",
@@ -440,18 +393,7 @@ Fully equipped kitchen with microwave, refrigerator, RO water, toaster, and gas 
         property_reviews: 77,
         property_rating: 4.85,
         property_price: 4899,
-        property_img: [
-            air302img1,
-            air302img2,
-            air302img3,
-            air302img4,
-            air302img5,
-            air302img6,
-            air302img7,
-            air302img8,
-            air302img9,
-            air302img10
-        ],
+        property_img: propertyImages["302"],
         property_nearplaces: [
             "Cyber Towers (2 km)",
             "KPHB Cafes",

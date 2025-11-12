@@ -2,14 +2,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import '../../../App.css';
 import './Slider.css'
-import img5 from '../../../assets/banner4.jpg';
+import { resolveOptimizedAsset } from '../../../utils/resolveOptimizedAsset';
 // import Homepage_form from '../homepage_form/Homepage_form';
 import { Link } from 'react-router-dom';
 import { navbarData } from '../../../data';
 
 const Slider = () => {
     const images = [
-        { id: 5, src: img5, alt: 'Image 5' },
+        { id: 5, src: resolveOptimizedAsset('banner4.jpg'), alt: 'Image 5' },
     ];
 
     return (

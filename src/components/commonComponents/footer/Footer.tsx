@@ -1,5 +1,5 @@
 // import { Link } from 'react-router-dom';
-import logo from '../../../assets/logo.jpeg';
+import { resolveOptimizedAsset } from '../../../utils/resolveOptimizedAsset';
 import {
     FaFacebook, FaTwitter, FaYoutube, FaInstagram
 } from 'react-icons/fa';
@@ -34,7 +34,7 @@ const Footer = () => {
             <div className='max-w-screen-2xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8'>
                 {/* Logo Section */}
                 <div className='flex flex-col gap-7 items-center lg:items-center'>
-                    <img className='w-32 md:w-20 rounded-md' src={logo} alt="paymentlogo" />
+                    <img className='w-32 md:w-20 rounded-md' src={resolveOptimizedAsset('logo.jpeg')} alt="paymentlogo" />
                     <div className='flex text-lg gap-6'>
                         {footerData.socialLinks.map(({ icon, link }, index) => {
                             const IconComponent = iconMap[icon];

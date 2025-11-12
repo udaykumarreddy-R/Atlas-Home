@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import img1 from '../../../assets/101/img_12.jpg';
-import img4 from '../../../assets/102/img_14.jpg';
-import img2 from '../../../assets/airbnb202/img_6.jpg';
-import img3 from '../../../assets/airbnb301/img_11.jpg';
+import { resolveOptimizedAsset } from '../../../utils/resolveOptimizedAsset';
 
 interface Room {
   title: string;
@@ -18,25 +15,25 @@ const ExclusiveService_Card = () => {
   const data: Room[] = [
     {
       title: "Sanctuary of Serenity",
-      thumbnail: img1,
+      thumbnail: resolveOptimizedAsset('101/img_12.jpg'),
       description: "Retreat to tranquil spaces where comfort meets style, offering you a peaceful escape at the heart of Atlas Homes.",
       link: "/rooms"
     },
     {
       title: "Tailored for Every Journey",
-      thumbnail: img2,
+      thumbnail: resolveOptimizedAsset('airbnb202/img_6.jpg'),
       description: "Find your perfect fit—our diverse accommodations are designed to suit every traveler, every story, every dream.",
       link: "/rooms"
     },
     {
       title: "Moments to Savor",
-      thumbnail: img3,
+      thumbnail: resolveOptimizedAsset('airbnb301/img_11.jpg'),
       description: "Delight in gourmet experiences and cozy corners, where every meal and every sip is a celebration of taste.",
       link: "/dining"
     },
     {
       title: "Celebrate Life’s Milestones",
-      thumbnail: img4,
+      thumbnail: resolveOptimizedAsset('102/img_14.jpg'),
       description: "Host unforgettable gatherings in elegant spaces, with every detail crafted to make your special moments shine.",
       link: "/events"
     },

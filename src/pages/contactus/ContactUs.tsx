@@ -1,6 +1,6 @@
 import CommonBanner from "../../components/commonComponents/banner/CommonBanner";
 // import Homepage_Properties from "../../components/homepage_components/homepage_Properties/Homepage_Properties";
-import img from '../../assets/pinnacle_images/p_1.jpeg';
+import { resolveOptimizedAsset } from "../../utils/resolveOptimizedAsset";
 
 // const contactInfo = [
 //     { icon: "📍", text: "Pune, Maharashtra, India" },
@@ -67,7 +67,7 @@ const ContactUs = () => {
         <section>
             {/* Banner */}
             <div>
-                <CommonBanner image={img} PageName={'Contact Us'} />
+                <CommonBanner image={resolveOptimizedAsset('banner.jpg')} PageName={'Contact Us'} />
             </div>
 
             {/* Contact Info Section */}

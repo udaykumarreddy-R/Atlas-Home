@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import img1 from '../../../assets/airbnb201/img_2.jpg';
-import img2 from '../../../assets/airbnb301/img_8.jpg';
+import { resolveOptimizedAsset } from '../../../utils/resolveOptimizedAsset';
 import { MdOutlineDone } from 'react-icons/md';
 // import { FaArrowRightLong } from 'react-icons/fa6';
 // import { Link } from 'react-router-dom';
 
 const featureData = {
-    images: [img1, img2],
+    images: [
+        resolveOptimizedAsset('airbnb201/img_2.jpg'),
+        resolveOptimizedAsset('airbnb301/img_8.jpg'),
+    ],
     title: "Why Choose Atlas Homes?",
     description:
         "At Atlas Homes, we believe that where you stay is just as important as where you go. Experience the perfect blend of luxury, comfort, and exceptional service that makes every stay memorable.",
@@ -56,11 +58,11 @@ const Homepage_WhyChoose = () => {
                     {/* Left Side - Images */}
                     <div className="flex-1 relative">
                         <div className="relative z-10 rounded-xl overflow-hidden shadow-2xl transform transition duration-500 hover:-translate-y-2">
-                            <img src={img1} alt="Luxury accommodation" className="w-full h-80 lg:h-96 object-cover" />
+                            <img src={featureData.images[0]} alt="Luxury accommodation" className="w-full h-80 lg:h-96 object-cover" />
                             <div className="absolute inset-0 bg-primary/10 mix-blend-multiply"></div>
                         </div>
                         <img
-                            src={img2}
+                            src={featureData.images[1]}
                             alt="Garden swing area"
                             className="w-56 sm:w-64 absolute -bottom-8 -right-6 sm:right-0 lg:-right-8 rounded-xl shadow-2xl object-cover border-4 border-white z-20 transition duration-500 hover:scale-105"
                         />

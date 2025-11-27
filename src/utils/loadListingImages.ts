@@ -4,13 +4,15 @@ type ListingImageMap = Record<string, string[]>;
 
 const optimizedModules = import.meta.glob('../assets/*/*.webp', {
   eager: true,
-  as: 'url',
-});
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
 
 const originalModules = import.meta.glob('../assets/*/*.{jpg,JPG,jpeg,JPEG,png,PNG}', {
   eager: true,
-  as: 'url',
-});
+  query: '?url',
+  import: 'default',
+}) as Record<string, string>;
 
 function extractUnit(path: string) {
   const match = path.match(/\.\.\/assets\/([^/]+)\//);
@@ -27,8 +29,6 @@ function baseNameFromKey(key: string) {
   return filename.replace(/\.[^.]+$/, '').replace(/\.[0-9a-f]{8}$/i, '');
 }
 
-// Eagerly load all images one level under /assets/<unit>/
-// Returns: Record<string /*unit*/, string[] /*urls*/>
 export function loadListingImages(): ListingImageMap {
   const byUnit = new Map<string, Map<string, string>>();
 
@@ -38,14 +38,18 @@ export function loadListingImages(): ListingImageMap {
 
     const manifestKey = manifestKeyFromPath(path);
     const baseKey = manifestKey ? baseNameFromKey(manifestKey) : path;
+
     const optimizedRelative = manifestKey ? manifest[manifestKey] : undefined;
     const optimizedModuleKey = optimizedRelative ? `../assets/${optimizedRelative}` : undefined;
-    const optimizedUrl = optimizedModuleKey ? optimizedModules[optimizedModuleKey] : undefined;
 
-    const imageUrl = (optimizedUrl as string | undefined) ?? (url as string);
+    const optimizedUrl = optimizedModuleKey
+      ? optimizedModules[optimizedModuleKey]
+      : undefined;
+
+    const imageUrl = optimizedUrl ?? url;
+
     const unitBucket = byUnit.get(unit) ?? new Map<string, string>();
 
-    // prefer optimized assets when available
     if (!unitBucket.has(baseKey) || optimizedUrl) {
       unitBucket.set(baseKey, imageUrl);
     }
@@ -56,8 +60,11 @@ export function loadListingImages(): ListingImageMap {
   const result: ListingImageMap = {};
   byUnit.forEach((images, unit) => {
     const ordered = Array.from(images.entries())
-      .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+      .sort(([a], [b]) =>
+        a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+      )
       .map(([, value]) => value);
+
     result[unit] = ordered;
   });
 

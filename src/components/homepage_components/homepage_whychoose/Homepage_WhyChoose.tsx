@@ -6,8 +6,8 @@ import { MdOutlineDone } from 'react-icons/md';
 
 const featureData = {
     images: [
-        resolveOptimizedAsset('airbnb201/img_2.jpg'),
-        resolveOptimizedAsset('airbnb301/img_8.jpg'),
+        resolveOptimizedAsset('201/img_2.jpg'),
+        resolveOptimizedAsset('301/img_8.jpg'),
     ],
     title: "Why Choose Atlas Homes?",
     description:

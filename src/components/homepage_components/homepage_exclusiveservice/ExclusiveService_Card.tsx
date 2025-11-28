@@ -21,13 +21,13 @@ const ExclusiveService_Card = () => {
     },
     {
       title: "Tailored for Every Journey",
-      thumbnail: resolveOptimizedAsset('airbnb202/img_6.jpg'),
+      thumbnail: resolveOptimizedAsset('202/img_6.jpg'),
       description: "Find your perfect fit—our diverse accommodations are designed to suit every traveler, every story, every dream.",
       link: "/rooms"
     },
     {
       title: "Moments to Savor",
-      thumbnail: resolveOptimizedAsset('airbnb301/img_11.jpg'),
+      thumbnail: resolveOptimizedAsset('301/img_11.jpg'),
       description: "Delight in gourmet experiences and cozy corners, where every meal and every sip is a celebration of taste.",
       link: "/dining"
     },

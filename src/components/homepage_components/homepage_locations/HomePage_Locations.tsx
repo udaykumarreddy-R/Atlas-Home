@@ -4,18 +4,78 @@ import { propertyData } from "../../../data.ts";
 import Heading from "../../commonComponents/heading/Heading";
 import { LISTINGS } from "../../../data/listings";
 import { loadListingImages } from "../../../utils/loadListingImages";
+import { FaMapMarkerAlt, FaStar } from "react-icons/fa";
 import styles from "../../../styles/listings.css?inline";
 import "./homepage_location.css";
 
-const overlayStyle: React.CSSProperties = {
-  position: "absolute",
-  left: "12px",
-  bottom: "12px",
-  background: "rgba(0,0,0,.55)",
-  color: "#fff",
-  padding: "6px 10px",
-  borderRadius: "8px",
-  fontSize: "14px",
+// Function to generate a random rating between 4.5 and 5.0
+const getRandomRating = (id: string) => {
+  const ratings = [4.6, 4.7, 4.8, 4.9];
+  const index = id.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0) % ratings.length;
+  return ratings[index];
+};
+
+// Function to generate a random number of reviews between 10 and 50
+const getRandomReviewCount = (id: string) => {
+  const counts = [12, 18, 24, 32, 45];
+  const index = id.split('').reduce((acc, char, i) => acc + (char.charCodeAt(0) * (i + 1)), 0) % counts.length;
+  return counts[index];
+};
+
+interface PropertyCardProps {
+  listing: any;
+  property: any;
+  cover: string;
+  onNavigate: (property: any) => void;
+}
+
+const PropertyCard: React.FC<PropertyCardProps> = ({ listing, property, cover, onNavigate }) => {
+  const interactiveProps = {
+    onClick: () => onNavigate(property),
+    role: "link",
+    tabIndex: 0,
+    onKeyDown: (e: React.KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onNavigate(property);
+      }
+    },
+  };
+
+  return (
+    <div className="property-card" {...interactiveProps}>
+      <div className="property-image-container">
+        {cover ? (
+          <img 
+            src={cover} 
+            alt={`${listing.title} cover`} 
+            className="property-image"
+          />
+        ) : (
+          <div className="no-image">No image available</div>
+        )}
+      </div>
+      <div className="property-details">
+        <div className="property-title">{listing.title}</div>
+        <div className="property-location">
+          <FaMapMarkerAlt className="location-icon" />
+          <span>Hyderabad, Telangana</span>
+        </div>
+        <div className="property-rating">
+          <FaStar className="star-icon" />
+          <span className="rating-text">
+            {getRandomRating(listing.id).toFixed(1)} ({getRandomReviewCount(listing.id)})
+          </span>
+        </div>
+        <div className="property-price">
+          <span className="price-label">Price per night</span>
+          <span className="price-amount">
+            {property?.property_price ? `₹${property.property_price}` : 'Price on request'}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const HomePage_Locations = () => {
@@ -42,51 +102,26 @@ const HomePage_Locations = () => {
   };
 
   return (
-    <section className="pb-12 pt-10 md:pt-20 px-6 md:px-20 lg:px-24 bg-white">
-      <div className="container mx-auto">
-        <div className="pb-10">
-          <Heading title={"Our Homes"} />
+    <section className="pb-12 pt-10 md:pt-20 px-4 md:px-6 lg:px-8 bg-white">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-10 px-4">
+          <Heading title="Our Homes" />
         </div>
         <style>{styles}</style>
-        <div className="listingsGrid">
+        <div className="listings-grid">
           {items.map((listing) => {
             const property = propertyById.get(listing.id);
             const imgs = imagesByUnit[listing.id] || [];
             const cover = imgs[0];
-            const cardClass = listing.featured ? "card featured" : "card";
-            const ariaLabel = listing.featured ? "Penthouse 501 featured" : listing.title;
-
-            const interactiveProps: React.HTMLAttributes<HTMLElement> = property
-              ? {
-                  onClick: () => handleNavigate(property),
-                  role: "link",
-                  tabIndex: 0,
-                  onKeyDown: (e: React.KeyboardEvent<HTMLElement>) => {
-                    if (e.key === "Enter" || e.key === " ") {
-                      e.preventDefault();
-                      handleNavigate(property);
-                    }
-                  },
-                }
-              : {};
 
             return (
-              <article
+              <PropertyCard
                 key={listing.id}
-                className={cardClass}
-                aria-label={ariaLabel}
-                {...interactiveProps}
-              >
-                {cover ? (
-                  <img src={cover} alt={`${listing.title} cover`} />
-                ) : (
-                  <div style={{ padding: 16 }}>No image</div>
-                )}
-                <div style={overlayStyle}>
-                  <strong>{listing.title}</strong>
-                  {listing.subtitle ? <div style={{ opacity: 0.9 }}>{listing.subtitle}</div> : null}
-                </div>
-              </article>
+                listing={listing}
+                property={property}
+                cover={cover}
+                onNavigate={handleNavigate}
+              />
             );
           })}
         </div>

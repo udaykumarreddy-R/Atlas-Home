@@ -9,7 +9,7 @@ import Slider from "../../components/homepage_components/slider/Slider";
 import { resolveOptimizedAsset } from "../../utils/resolveOptimizedAsset";
 import HomePage_Locations from "../../components/homepage_components/homepage_locations/HomePage_Locations";
 
-const parallaxImage = resolveOptimizedAsset('airbnb301/img_1.jpg');
+const parallaxImage = resolveOptimizedAsset('301/img_1.jpg');
 
 const Home = () => {
     return (

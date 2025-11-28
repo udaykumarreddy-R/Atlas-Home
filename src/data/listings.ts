@@ -7,7 +7,6 @@ export type Listing = {
 
 // Add/keep existing units here; ensure 501 exists and is featured
 export const LISTINGS: Listing[] = [
-  { id: '501', title: 'Atlas Penthouse 501', subtitle: 'Hyderabad', featured: true },
   { id: '201', title: 'Atlas Homes Room 201', subtitle: 'Hyderabad' },
   { id: '202', title: 'Atlas Homes Room 202', subtitle: 'Hyderabad' },
   { id: '301', title: 'Atlas Homes Room 301', subtitle: 'Hyderabad' },
